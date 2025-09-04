@@ -10,7 +10,15 @@ module.exports = {
           100: '#FFF6F6'
         }
 
+      },
+      fontFamily: {
+        instrumentBold: ['instrument-bold']
+
+      },
+      fontSize: {
+        '3.5xl': '35.5px'
       }
+
     },
   },
   plugins: [],
