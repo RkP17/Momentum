@@ -44,6 +44,12 @@ const CustomInput = ({
                     "w-full h-14 px-3 rounded-full text-white", 
                     isFocused ? "border-2 border-secondary bg-dark-200" : "border border-light-100 bg-dark-200"
                 )}
+                style = {{
+                    fontFamily: "instrumentBold",
+                    fontSize: 15,
+                    textAlign: "center",
+                }}
+                
             />
         </View>
     )

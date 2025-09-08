@@ -50,7 +50,7 @@ export default function RootLayout() {
     return () => subscription.remove();
   }, []);
 
-  if (!fontsLoaded) return null; 
+  if (!fontsLoaded || isLoading) return null; 
 
 
 

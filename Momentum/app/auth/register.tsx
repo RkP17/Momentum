@@ -5,7 +5,6 @@ import AppText from '@/components/AppText';
 import CustomInput from '@/components/customInput';
 import CustomButton from '@/components/CustomButton';
 import { useState, useEffect } from 'react';
-import { account, signInWithGoogle } from '@/lib/appwrite';
 import * as Linking from "expo-linking";
 import { OAuthProvider } from 'appwrite';
 import * as Google from 'expo-auth-session/providers/google';
@@ -16,6 +15,10 @@ import { createUser } from '@/lib/appwrite';
 import useAuthStore from '@/store/auth.store';
 import { User } from '@/type';
 import { makeRedirectUri } from 'expo-auth-session';
+import * as AuthSession from "expo-auth-session";
+import * as WebBrowser from 'expo-web-browser';
+
+
 
 
 
@@ -49,44 +52,9 @@ const Register = () => {
             setIsSubmitting(false);
         }
     }
-
-    // @ts-ignore
-    const redirectUri = makeRedirectUri({ useProxy: true });
-
-    const [request, response, promptAsync] = Google.useAuthRequest({
-        clientId: "390879470559-n9b1gcdebokcq5ktjdt1t3bimd375bg8.apps.googleusercontent.com",
-        redirectUri,
-        scopes: ["profile", "email"],         // Ask for profile info and email
-        
-    });
-
-    useEffect(() => {
-        if (response?.type === "success") {
-            const { authentication } = response;
-
-            if (!authentication?.accessToken) return;
-
-            async function loginOrRegisterWithGoogle() {
-            try {
-                if (authentication?.accessToken) {
-                const userData = await signInWithGoogle(authentication.accessToken);
-                useAuthStore.getState().setUser(userData as unknown as User); // update Zustand
-                router.replace("/tabs/home"); // navigate to home
-            } else {
-                throw new Error("Authentication failed: accessToken is null");
-            }
-            } catch (error) {
-                Alert.alert(
-                "Google Sign Up Failed",
-                error instanceof Error ? error.message : "Unknown error"
-                );
-            }
-            }
-
-            loginOrRegisterWithGoogle();
-        }
-    }, [response]);
-
+    
+    
+   
 
   return (
     <KeyboardAvoidingView
@@ -134,17 +102,6 @@ const Register = () => {
                 </View>
                 
                 <View className='flex-1 items-center mt-5'>
-                    <AppText style={{ color:"#ffffffff", fontSize:20}}>OR</AppText>
-                    <View style={{ width: "100%" , marginTop:20}}>
-                        <TouchableOpacity
-                            onPress={() => promptAsync()}
-                            disabled={!request}
-                            style={{ flexDirection: "row", alignItems: "center", width: "100%", justifyContent:"center", padding: 15, borderRadius: 50, backgroundColor: "#ffffffff" }}
-                            >
-                            <GoogleIcon width={40} height={30}/>
-                            <Text style={{ color: "#000000ff", fontFamily: "instrumentBold", marginLeft: 10, fontSize:16 }}>Sign up with Google</Text>
-                        </TouchableOpacity>
-                    </View>
                     <View className='flex-row justify-center items-center mt-16'>
                         <Text className='flex text-light-100 justify-center'>
                             Already have an account?
@@ -165,6 +122,8 @@ const Register = () => {
     
   )
 }
+
+
 
 export default Register
 
