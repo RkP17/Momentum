@@ -1,13 +1,16 @@
 {
   "expo": {
     "name": "Momentum",
-    "slug": "Momentum",
+    "slug": "momentum",
     "version": "1.0.0",
     "orientation": "portrait",
     "icon": "./assets/images/icon.png",
     "scheme": "momentum",
     "userInterfaceStyle": "automatic",
     "newArchEnabled": true,
+    "assetBundlePatterns": [
+      "**/*"
+    ],
     "ios": {
       "supportsTablet": true
     },
@@ -16,7 +19,8 @@
         "foregroundImage": "./assets/images/adaptive-icon.png",
         "backgroundColor": "#ffffff"
       },
-      "edgeToEdgeEnabled": true
+      "edgeToEdgeEnabled": true,
+      "package": "com.rajpat17.momentum"
     },
     "web": {
       "bundler": "metro",
@@ -37,6 +41,12 @@
     ],
     "experiments": {
       "typedRoutes": true
+    },
+    "extra": {
+      "router": {},
+      "eas": {
+        "projectId": "13f2943f-9e53-46cd-8743-42bbe65270e9"
+      }
     }
   }
 }

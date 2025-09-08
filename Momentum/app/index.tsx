@@ -1,12 +1,14 @@
-import { Text, View } from "react-native";
-import {Link} from "expo-router";
-
+import React from "react";
+import Welcome from "./welcome";
+import "./global.css"
+import useAuthStore from "@/store/auth.store";
+import { Redirect } from "expo-router";
 
 export default function Index() {
-  return (
-    <View className="flex-1 items-center justify-center">
-      <Text className="text-5xl text-primary font-bold text-center">Welcome to Mometum</Text>
-      <Link href="/onboarding">Onboarding</Link>
-    </View>
-  );
+  const { isAuthenticated, isLoading } = useAuthStore();
+  const { user } = useAuthStore();
+
+  if (isLoading) return null; // wait for auth check
+
+  return isAuthenticated ? <Redirect href="/tabs/home" /> : <Redirect href="/welcome" />;
 }
