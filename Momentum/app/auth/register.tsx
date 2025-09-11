@@ -75,8 +75,9 @@ const Register = () => {
                     <CustomInput
                         value ={form.name}
                         onChangeText={(text) => setForm((prev) => ({...prev, name:text}))}
-                        label='Name'
+                        label='Name/Nickname'
                         keyboardType='default'
+                        maxLength={10}
                     />
                     <CustomInput
                         value ={form.email}

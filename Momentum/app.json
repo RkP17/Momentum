@@ -12,15 +12,20 @@
       "**/*"
     ],
     "ios": {
-      "supportsTablet": true
+      "supportsTablet": true,
+      "bundleIdentifier": "com.rajpat17.momentum"
     },
     "android": {
       "adaptiveIcon": {
         "foregroundImage": "./assets/images/adaptive-icon.png",
-        "backgroundColor": "#ffffff"
+        "backgroundColor": "#232323"
       },
       "edgeToEdgeEnabled": true,
-      "package": "com.rajpat17.momentum"
+      "package": "com.rajpat17.momentum",
+      "statusBar": {
+        "backgroundColor": "#232323",
+        "barStyle": "light-content"
+      }
     },
     "web": {
       "bundler": "metro",

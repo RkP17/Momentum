@@ -1,3 +1,5 @@
+import { ReactNode } from "react";
+
 export interface CustomInputProps {
     placeholder?: string;
     value?: string;
@@ -5,6 +7,7 @@ export interface CustomInputProps {
     label: string;
     secureTextEntry?: boolean;
     keyboardType?:"default" | "email-address" | "numeric" | "phone-pad"
+    maxLength?: number; 
 }
 
 export interface CustomButtonProps {
@@ -30,4 +33,16 @@ export interface User {
   id: string,
   name: string,
   email: string
+}
+
+export interface TabBarIconProps{
+  focused: boolean,
+  title: string,
+  icon: ReactNode
+}
+
+export interface TabBarIconProps {
+  focused: boolean,
+  title: string,
+  icon: keyof typeof MaterialIcons.glyphMap;
 }

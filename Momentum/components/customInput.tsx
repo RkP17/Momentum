@@ -10,7 +10,8 @@ const CustomInput = ({
     onChangeText,
     label,
     secureTextEntry = false,
-    keyboardType="default"
+    keyboardType="default",
+    maxLength,
 }: CustomInputProps) => {
 
     // track the focused or unfocused state of the input
@@ -35,6 +36,7 @@ const CustomInput = ({
                 autoCapitalize='none'
                 autoCorrect = {false}
                 value = {value}
+                maxLength={maxLength}
                 onChangeText = {onChangeText}
                 secureTextEntry = {secureTextEntry}
                 keyboardType = {keyboardType}
@@ -49,6 +51,7 @@ const CustomInput = ({
                     fontSize: 15,
                     textAlign: "center",
                 }}
+                
                 
             />
         </View>

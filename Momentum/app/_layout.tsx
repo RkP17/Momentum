@@ -4,12 +4,18 @@ import { useFonts } from "expo-font";
 import { useEffect } from "react";
 import { GestureHandlerRootView } from "react-native-gesture-handler";
 import "./global.css";
-import { StyleSheet } from "react-native";
+import { Platform, StyleSheet, View } from "react-native";
 import * as Linking from "expo-linking";
 import { useRouter } from "expo-router";
 import useAuthStore from "@/store/auth.store";
+import * as NavigationBar from "expo-navigation-bar";
+import changeNavigationBarColor from "react-native-navigation-bar-color";
+import { StatusBar } from 'expo-status-bar';
+import { Background } from "@react-navigation/elements";
+
 
 SplashScreen.preventAutoHideAsync(); // keep splash until ready
+
 
 export default function RootLayout() {
   const{isLoading, fetchAuthenticatedUser} = useAuthStore();
@@ -33,7 +39,6 @@ export default function RootLayout() {
   },[]);
 
   
-
   useEffect(() => {
     const handleDeepLink = (event: Linking.EventType) => {
       const url = event.url;
@@ -54,12 +59,32 @@ export default function RootLayout() {
 
 
 
+
   return (
-    <GestureHandlerRootView className="flex-1 bg-app">
+    <GestureHandlerRootView
+      style={{
+        flex: 1,
+        backgroundColor: "#232323",
+        paddingBottom: Platform.OS === "android" ? 30 : 0, 
+        
+      }}
+    >
       <Stack screenOptions={{ headerShown: false }} />
     </GestureHandlerRootView>
+
   )
 
     
 }
+
+const styles = StyleSheet.create({
+  rootContainer: {
+    flex: 1,
+    backgroundColor: '#232323', // This should cover everything including system areas
+  },
+  container: {
+    flex: 1,
+    backgroundColor: '#232323',
+  },
+});
 
